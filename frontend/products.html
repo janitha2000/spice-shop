@@ -1,0 +1,153 @@
+<!-- products.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Products - Spices Shop</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-white text-gray-900">
+
+  <!-- Navbar -->
+  <nav class="bg-red-700 text-white p-4 flex justify-between items-center">
+    <h1 class="text-2xl font-bold">Spices Shop</h1>
+    <ul class="flex gap-6">
+      <li><a href="index.html" class="hover:text-yellow-300">Home</a></li>
+      <li><a href="products.html" class="hover:text-yellow-300">Products</a></li>
+      <li><a href="review.html" class="hover:text-yellow-300">Reviews</a></li>
+      <li><a href="cart.html" class="hover:text-yellow-300">Cart</a></li>
+      <li><a href="login.html" class="hover:text-yellow-300">Login</a></li>
+    </ul>
+  </nav>
+
+  <!-- Product List -->
+  <section class="p-8 grid grid-cols-1 md:grid-cols-3 gap-6">
+    
+    <!-- Product Card: Ceylon Cinnamon -->
+    <div class="border rounded-xl p-4 shadow-md">
+      <img src="kurudu.jpg" alt="Ceylon Cinnamon" class="w-full h-32 object-cover rounded mb-4" />
+      <h2 class="text-xl font-semibold mb-2">Ceylon Cinnamon</h2>
+      <p class="mb-2">Rs. 200 per 100g</p>
+      <label for="qty1" class="block text-sm">Quantity (g):</label>
+      <input type="number" id="qty1" value="100" class="w-full border p-2 rounded mb-2" />
+      <p id="price1" class="font-bold mb-2">Total: Rs. 200</p>
+      <button onclick="addToCart('Ceylon Cinnamon', 2, 'qty1', 'price1')" class="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700">Add to Cart</button>
+    </div>
+
+    <!-- Product Card: Nutmeg -->
+    <div class="border rounded-xl p-4 shadow-md">
+      <img src="sadikka.jpg" alt="Nutmeg" class="w-full h-32 object-cover rounded mb-4" />
+      <h2 class="text-xl font-semibold mb-2">Nutmeg</h2>
+      <p class="mb-2">Rs. 300 per 100g</p>
+      <label for="qty2" class="block text-sm">Quantity (g):</label>
+      <input type="number" id="qty2" value="100" class="w-full border p-2 rounded mb-2" />
+      <p id="price2" class="font-bold mb-2">Total: Rs. 300</p>
+      <button onclick="addToCart('Nutmeg', 3, 'qty2', 'price2')" class="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700">Add to Cart</button>
+    </div>
+
+    <!-- Product Card: Mace -->
+    <div class="border rounded-xl p-4 shadow-md">
+      <img src="vasavasi.jpg" alt="Mace" class="w-full h-32 object-cover rounded mb-4" />
+      <h2 class="text-xl font-semibold mb-2">Mace</h2>
+      <p class="mb-2">Rs. 400 per 100g</p>
+      <label for="qty3" class="block text-sm">Quantity (g):</label>
+      <input type="number" id="qty3" value="100" class="w-full border p-2 rounded mb-2" />
+      <p id="price3" class="font-bold mb-2">Total: Rs. 400</p>
+      <button onclick="addToCart('Mace', 4, 'qty3', 'price3')" class="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700">Add to Cart</button>
+    </div>
+
+    <!-- Product Card: Lemongrass -->
+    <div class="border rounded-xl p-4 shadow-md">
+      <img src="lemongrass.jpg" alt="Lemongrass" class="w-full h-32 object-cover rounded mb-4" />
+      <h2 class="text-xl font-semibold mb-2">Lemongrass</h2>
+      <p class="mb-2">Rs. 150 per 100g</p>
+      <label for="qty4" class="block text-sm">Quantity (g):</label>
+      <input type="number" id="qty4" value="100" class="w-full border p-2 rounded mb-2" />
+      <p id="price4" class="font-bold mb-2">Total: Rs. 150</p>
+      <button onclick="addToCart('Lemongrass', 1.5, 'qty4', 'price4')" class="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700">Add to Cart</button>
+    </div>
+
+    <!-- Product Card: Cardamom -->
+    <div class="border rounded-xl p-4 shadow-md">
+      <img src="Cardamom.jpg" alt="Cardamom" class="w-full h-32 object-cover rounded mb-4" />
+      <h2 class="text-xl font-semibold mb-2">Cardamom</h2>
+      <p class="mb-2">Rs. 500 per 100g</p>
+      <label for="qty5" class="block text-sm">Quantity (g):</label>
+      <input type="number" id="qty5" value="100" class="w-full border p-2 rounded mb-2" />
+      <p id="price5" class="font-bold mb-2">Total: Rs. 500</p>
+      <button onclick="addToCart('Cardamom', 5, 'qty5', 'price5')" class="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700">Add to Cart</button>
+    </div>
+
+    <!-- Product Card: Screw Pine -->
+    <div class="border rounded-xl p-4 shadow-md">
+      <img src="rampe.jpg" alt="rampe" class="w-full h-32 object-cover rounded mb-4" />
+      <h2 class="text-xl font-semibold mb-2">Screw Pine</h2>
+      <p class="mb-2">Rs. 250 per 100g</p>
+      <label for="qty6" class="block text-sm">Quantity (g):</label>
+      <input type="number" id="qty6" value="100" class="w-full border p-2 rounded mb-2" />
+      <p id="price6" class="font-bold mb-2">Total: Rs. 250</p>
+      <button onclick="addToCart('Screw Pine', 2.5, 'qty6', 'price6')" class="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700">Add to Cart</button>
+    </div>
+
+    <!-- Product Card: Curry Leaves -->
+    <div class="border rounded-xl p-4 shadow-md">
+      <img src="Curry Leaves.jpg" alt="Curry Leaves" class="w-full h-32 object-cover rounded mb-4" />
+      <h2 class="text-xl font-semibold mb-2">Curry Leaves</h2>
+      <p class="mb-2">Rs. 100 per 100g</p>
+      <label for="qty7" class="block text-sm">Quantity (g):</label>
+      <input type="number" id="qty7" value="100" class="w-full border p-2 rounded mb-2" />
+      <p id="price7" class="font-bold mb-2">Total: Rs. 100</p>
+      <button onclick="addToCart('Curry Leaves', 1, 'qty7', 'price7')" class="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700">Add to Cart</button>
+    </div>
+
+    <!-- Product Card: Clove -->
+    <div class="border rounded-xl p-4 shadow-md">
+      <img src="Clove.jpg" alt="Clove" class="w-full h-32 object-cover rounded mb-4" />
+      <h2 class="text-xl font-semibold mb-2">Clove</h2>
+      <p class="mb-2">Rs. 350 per 100g</p>
+      <label for="qty8" class="block text-sm">Quantity (g):</label>
+      <input type="number" id="qty8" value="100" class="w-full border p-2 rounded mb-2" />
+      <p id="price8" class="font-bold mb-2">Total: Rs. 350</p>
+      <button onclick="addToCart('Clove', 3.5, 'qty8', 'price8')" class="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700">Add to Cart</button>
+    </div>
+
+    <!-- Product Card: Turmeric -->
+    <div class="border rounded-xl p-4 shadow-md">
+      <img src="Turmeric.jpg" alt="Turmeric" class="w-full h-32 object-cover rounded mb-4" />
+      <h2 class="text-xl font-semibold mb-2">Turmeric</h2>
+      <p class="mb-2">Rs. 200 per 100g</p>
+      <label for="qty9" class="block text-sm">Quantity (g):</label>
+      <input type="number" id="qty9" value="100" class="w-full border p-2 rounded mb-2" />
+      <p id="price9" class="font-bold mb-2">Total: Rs. 200</p>
+      <button onclick="addToCart('Turmeric', 2, 'qty9', 'price9')" class="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700">Add to Cart</button>
+    </div>
+
+  </section>
+
+  <script>
+    function addToCart(name, pricePerGram, qtyId, priceId) {
+      const qty = document.getElementById(qtyId).value;
+      const total = qty * pricePerGram;
+      document.getElementById(priceId).textContent = `Total: Rs. ${total}`;
+
+      // Optional: Save to localStorage or backend
+      alert(`${name} (${qty}g) added to cart. Total: Rs. ${total}`);
+    }
+    function addToCart(name, pricePerGram, qtyId, priceId) {
+  const qty = document.getElementById(qtyId).value;
+  const total = qty * pricePerGram;
+  document.getElementById(priceId).textContent = `Total: Rs. ${total}`;
+
+  // Save to localStorage
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+  cart.push({ name, pricePerGram, quantity: qty });
+  localStorage.setItem("cart", JSON.stringify(cart));
+
+  alert(`${name} (${qty}g) added to cart.`);
+}
+
+  </script>
+
+</body>
+</html>

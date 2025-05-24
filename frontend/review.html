@@ -1,0 +1,111 @@
+<!-- review.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Reviews - Spices Shop</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-yellow-50 text-gray-900">
+
+  <!-- Navbar -->
+  <nav class="bg-red-700 text-white p-4 flex justify-between items-center">
+    <h1 class="text-2xl font-bold">Spices Shop</h1>
+    <ul class="flex gap-6">
+      <li><a href="index.html" class="hover:text-yellow-300">Home</a></li>
+      <li><a href="products.html" class="hover:text-yellow-300">Products</a></li>
+      <li><a href="review.html" class="hover:text-yellow-300">Reviews</a></li>
+      <li><a href="cart.html" class="hover:text-yellow-300">Cart</a></li>
+      <li><a href="login.html" class="hover:text-yellow-300">Login</a></li>
+    </ul>
+  </nav>
+
+  <!-- Reviews Section -->
+  <section class="p-6 max-w-5xl mx-auto">
+    <h2 class="text-3xl font-bold mb-6 text-center">Customer Reviews</h2>
+
+    <!-- Add Review Form -->
+    <div class="bg-white p-6 rounded-lg shadow mb-6">
+      <h3 class="text-xl font-semibold mb-4">Add Your Review</h3>
+      <form id="reviewForm">
+        <input type="text" id="reviewerName" placeholder="Your Name" class="w-full p-2 mb-3 border rounded" required />
+        <select id="reviewRating" class="w-full p-2 mb-3 border rounded" required>
+          <option value="" disabled selected>Rating</option>
+          <option value="⭐⭐⭐⭐⭐">⭐⭐⭐⭐⭐</option>
+          <option value="⭐⭐⭐⭐">⭐⭐⭐⭐</option>
+          <option value="⭐⭐⭐">⭐⭐⭐</option>
+          <option value="⭐⭐">⭐⭐</option>
+          <option value="⭐">⭐</option>
+        </select>
+        <textarea id="reviewText" placeholder="Your Review" class="w-full p-2 mb-3 border rounded" required></textarea>
+        <input type="file" id="reviewPhoto" accept="image/*" class="w-full p-2 mb-3 border rounded" />
+        <button type="submit" class="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700">Submit Review</button>
+      </form>
+    </div>
+
+    <!-- Reviews List -->
+    <div id="reviewsContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <!-- Existing Reviews -->
+      <div class="bg-white p-6 rounded-lg shadow">
+        <h3 class="text-xl font-semibold mb-1">Janani M.</h3>
+        <div class="text-yellow-500 mb-2">⭐⭐⭐⭐⭐</div>
+        <p>"Absolutely loved the Ceylon Cinnamon! Fresh and full of flavor. Will order again."</p>
+        <img src="path/to/example.jpg" alt="Review Photo" class="mt-4 rounded-lg" />
+      </div>
+
+      <div class="bg-white p-6 rounded-lg shadow">
+        <h3 class="text-xl font-semibold mb-1">Kavishka R.</h3>
+        <div class="text-yellow-500 mb-2">⭐⭐⭐⭐</div>
+        <p>"Great variety of spices. Packaging was clean and neat. Delivery was on time."</p>
+      </div>
+
+      <div class="bg-white p-6 rounded-lg shadow">
+        <h3 class="text-xl font-semibold mb-1">Nimasha D.</h3>
+        <div class="text-yellow-500 mb-2">⭐⭐⭐⭐⭐</div>
+        <p>"This is my third purchase — Spices never disappoints. Highly recommend!"</p>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    const reviewForm = document.getElementById("reviewForm");
+    const reviewsContainer = document.getElementById("reviewsContainer");
+
+    reviewForm.addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      // Get form values
+      const name = document.getElementById("reviewerName").value;
+      const rating = document.getElementById("reviewRating").value;
+      const reviewText = document.getElementById("reviewText").value;
+      const photoInput = document.getElementById("reviewPhoto");
+      const photoFile = photoInput.files[0];
+
+      // Create a new review card
+      const reviewCard = document.createElement("div");
+      reviewCard.classList.add("bg-white", "p-6", "rounded-lg", "shadow");
+
+      let photoHTML = "";
+      if (photoFile) {
+        const photoURL = URL.createObjectURL(photoFile);
+        photoHTML = `<img src="${photoURL}" alt="Review Photo" class="mt-4 rounded-lg" />`;
+      }
+
+      reviewCard.innerHTML = `
+        <h3 class="text-xl font-semibold mb-1">${name}</h3>
+        <div class="text-yellow-500 mb-2">${rating}</div>
+        <p>"${reviewText}"</p>
+        ${photoHTML}
+      `;
+
+      // Add the new review to the container
+      reviewsContainer.appendChild(reviewCard);
+
+      // Clear the form
+      reviewForm.reset();
+    });
+  </script>
+
+</body>
+</html>

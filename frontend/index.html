@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Spices Shop - Home</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-white text-gray-800">
+  <div id="product-list"></div>
+  <div id="product-list"></div>
+  <!-- Navbar -->
+  <header class="bg-red-600 text-white p-4 shadow-md">
+    <div class="container mx-auto flex justify-between items-center">
+      <h1 class="text-2xl font-bold"> Spices Shop</h1>
+      <nav class="space-x-4">
+        <a href="index.html" class="hover:underline">Home</a>
+        <a href="products.html" class="hover:underline">Products</a>
+        <a href="review.html" class="hover:underline">Reviews</a>
+        <a href="cart.html" class="hover:underline">Cart</a>
+        <a href="login.html" class="hover:underline">Login</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="bg-yellow-100 py-16 text-center">
+    <h2 class="text-4xl font-bold mb-4">Welcome to  Spices Shop!</h2>
+    <p class="text-lg">Discover the taste of tradition with our hand-picked spices.</p>
+    <img src="OIP.jpg" alt="Spices" class="mx-auto mt-6 w-1/2 rounded-xl shadow-lg">
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-red-600 text-white text-center p-4 mt-8">
+    © 2025 Spices Shop. All rights reserved.
+  </footer>
+
+  <script>
+    let isLogin = true;
+
+    const formTitle = document.getElementById("formTitle");
+    const toggleText = document.getElementById("toggleText");
+    const nameField = document.getElementById("nameField");
+    const authForm = document.getElementById("authForm");
+
+    function toggleForm() {
+      isLogin = !isLogin;
+
+      if (isLogin) {
+        formTitle.textContent = "Login to Your Account";
+        toggleText.textContent = "Don't have an account?";
+        nameField.classList.add("hidden");
+      } else {
+        formTitle.textContent = "Create a New Account";
+        toggleText.textContent = "Already have an account?";
+        nameField.classList.remove("hidden");
+      }
+    }
+
+    authForm.addEventListener("submit", function (e) {
+      e.preventDefault();
+      const name = document.getElementById("nameField").value;
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+
+      let users = JSON.parse(localStorage.getItem("users")) || [];
+
+      if (isLogin) {
+        const existingUser = users.find(user => user.email === email && user.password === password);
+        if (existingUser) {
+          // Log out the currently logged-in user (if any)
+          localStorage.removeItem("loggedInUser");
+
+          // Log in the new user
+          localStorage.setItem("loggedInUser", JSON.stringify(existingUser));
+          alert(`Welcome back, ${existingUser.name}!`);
+          window.location.href = "index.html"; // Redirect to home page
+        } else {
+          alert("Invalid login. Please check your email and password.");
+        }
+      } else {
+        const userExists = users.find(user => user.email === email);
+        if (userExists) {
+          alert("Account already exists. Please login.");
+        } else {
+          if (!name) {
+            alert("Please enter your name to create an account.");
+            return;
+          }
+          users.push({ name, email, password });
+          localStorage.setItem("users", JSON.stringify(users));
+          alert(`Account created successfully, ${name}! Please login.`);
+          toggleForm();
+        }
+      }
+    });
+
+    // Function to display the logged-in user's name and add a logout button
+    function showUserName(name) {
+      const navbar = document.querySelector("nav ul");
+      navbar.innerHTML = ""; // Clear existing items
+
+      const userNameDisplay = document.createElement("li");
+      userNameDisplay.textContent = `Welcome, ${name}`;
+      userNameDisplay.classList.add("font-bold", "text-yellow-300");
+
+      const logoutButton = document.createElement("li");
+      logoutButton.innerHTML = `<button class="text-red-600 hover:underline" onclick="logout()">Log Out</button>`;
+
+      navbar.appendChild(userNameDisplay);
+      navbar.appendChild(logoutButton);
+    }
+
+    // Logout Functionality
+    function logout() {
+      localStorage.removeItem("loggedInUser");
+      alert("You have been logged out.");
+      location.reload(); // Reload the page to reset the UI
+    }
+
+    // Forgot Password Functionality
+    function forgotPassword() {
+      const email = prompt("Enter your registered email address:");
+      if (!email) {
+        alert("Email is required to reset your password.");
+        return;
+      }
+
+      let users = JSON.parse(localStorage.getItem("users")) || [];
+      const user = users.find(user => user.email === email);
+
+      if (user) {
+        const newPassword = prompt("Enter your new password:");
+        if (newPassword) {
+          user.password = newPassword;
+          localStorage.setItem("users", JSON.stringify(users));
+          alert("Password reset successfully! Please login with your new password.");
+        } else {
+          alert("Password reset canceled.");
+        }
+      } else {
+        alert("No account found with this email address.");
+      }
+    }
+
+    // Check if a user is already logged in
+    const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
+    if (loggedInUser) {
+      showUserName(loggedInUser.name);
+    }
+  </script>
+
+</body>
+</html>
